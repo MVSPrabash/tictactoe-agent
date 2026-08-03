@@ -7,20 +7,28 @@ This project contains 4 core modules
 3. Trainer
 4. Evaluation
 
+## Planned Project Architecture 
+```
+tictactoe-agent/
+├── game/            # Environment
+├── agents/
+├── training/        # Training loop
+├── evaluation/      # Benchmarking
+├── visualization/   # Plots and demos
+├── scripts/         # CLI entry points
+└── models/          # Saved models
+```
+
 ## Workflow
 ### Phase 1
-* Tic-Tac-Toe environment
+* Complete Game Module
 
 ### Phase 2
-* Tabular Q-learning
+* Q Learning Agent
 
 ### Phase 3
-* Evaluation framework
-* Statistics
-* Visualization
+* Training and Evaluation for QL Agent
 
-* Minimax benchmark
-
-### Phase 4 (Probably)
-* Deep Q-Network (PyTorch)
+### Phase 4 (maybe)
+* More agents with different learning methods
 
