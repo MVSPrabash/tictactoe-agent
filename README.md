@@ -1,27 +1,26 @@
 # Tic-Tac-Toe Agent
 An intelligent agent that learns and plays Tic Tac Toe
 
-## Flow
-Phase 1
+This project contains 4 core modules
+1. Environment
+2. Agent
+3. Trainer
+4. Evaluation
+
+## Workflow
+### Phase 1
 * Tic-Tac-Toe environment
 
-Phase 2
-* Random agent
-* Human agent
-
-Phase 3
+### Phase 2
 * Tabular Q-learning
 
-Phase 4
-* Self-play training
-
-Phase 5
+### Phase 3
 * Evaluation framework
 * Statistics
 * Visualization
 
 * Minimax benchmark
 
-Phase 6 (Probably)
+### Phase 4 (Probably)
 * Deep Q-Network (PyTorch)
 
