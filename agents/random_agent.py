@@ -16,3 +16,13 @@ class RandomAgent(Agent):
         col = random.randint(0, 2)
         return Action(row, col)
 
+    def update(
+        self,
+        state: State,
+        action: Action,
+        reward: float,
+        next_state: State,
+        next_actions: list[Action],
+        done: bool,
+    ) -> None:
+        pass

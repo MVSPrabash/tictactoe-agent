@@ -12,3 +12,15 @@ class Agent(ABC):
 
     @abstractmethod
     def choose_action(self, state: State) -> Action:...
+
+    @abstractmethod
+    def update(
+        self,
+        state: State,
+        action: Action,
+        reward: float,
+        next_state: State,
+        next_actions: list[Action],
+        done: bool,
+    ) -> None:
+        ...
