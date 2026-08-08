@@ -1,26 +1,28 @@
+from player import Player
+from board import Board
+
 class Game:
     def __init__(self):
-        self.board: list[list[int]] = [
-            [0,0,0],
-            [0,0,0],
-            [0,0,0]
-        ]
+        self.reset()
 
-        self.current_player: int = 1
+    def reset(self) -> None:
+        self.board: Board = Board()
+        self.current_player: Player = Player.X
 
     def play(self, row: int, col: int) -> None:
-        if self.board[row][col] != 0:
-            raise ValueError("Illegal move")
+        if self.is_over():
+            raise ValueError("Game is over")
+        
+        self.board.place(row, col, self.current_player)
 
-        self.board[row][col] = self.current_player
+        if not self.is_over():
+            self.current_player = Player.invert(self.current_player)
 
-        self.current_player *= -1
+    def winner(self) -> Player | None:
+        return self.board.check_win()
 
-    def print_board(self) -> None:
-        for row in self.board:
-            print(row)
+    def is_draw(self) -> bool:
+        return self.board.check_win() is None and self.board.is_full()
 
-    def winner(self) -> int:...
-
-    def is_draw(self) -> bool:...
-
+    def is_over(self) -> bool:
+        return self.board.check_win() is not None or self.board.is_full()
