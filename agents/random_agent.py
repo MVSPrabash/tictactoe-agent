@@ -4,7 +4,12 @@ from game.state import State
 import random
 
 class RandomAgent(Agent):
-    def __init__(self):...
+    def __init__(
+        self,
+        alpha: float,
+        epsilon: float,
+        gamma: float,
+    ):...
 
     def choose_action(self, state: State) -> Action:
         row = random.randint(0, 2)
