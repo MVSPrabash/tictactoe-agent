@@ -31,3 +31,12 @@ class Game:
 
     def state(self) -> State:
         return State(tuple(cell for row in self.board._board for cell in row), self.current_player)
+
+    def legal_actions(self) -> list[Action]:
+        actions: list[Action] = []
+        for row in range(3):
+            for col in range(3):
+                if self.board._board[row][col] is None:
+                    actions.append(Action(row, col))
+                
+        return actions
