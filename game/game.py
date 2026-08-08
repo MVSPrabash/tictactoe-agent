@@ -1,6 +1,7 @@
 from game.player import Player
 from game.board import Board
 from game.state import State
+from game.action import Action
 
 class Game:
     def __init__(self):
@@ -10,11 +11,11 @@ class Game:
         self.board: Board = Board()
         self.current_player: Player = Player.X
 
-    def play(self, row: int, col: int) -> None:
+    def play(self, action: Action) -> None:
         if self.is_over():
             raise ValueError("Game is over")
         
-        self.board.place(row, col, self.current_player)
+        self.board.place(action.row, action.col, self.current_player)
 
         if not self.is_over():
             self.current_player = Player.invert(self.current_player)
