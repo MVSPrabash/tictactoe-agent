@@ -19,20 +19,6 @@ tictactoe-agent/
 └── models/          # Saved models
 ```
 
-## Workflow
-### Phase 1
-* Complete Game Module
-
-### Phase 2
-* Q Learning Agent
-
-### Phase 3
-* Training and Evaluation for QL Agent
-
-### Phase 4 (maybe)
-* More agents with different learning methods
-
-
 ## Baseline Results
 
 ### RandomAgent vs RandomAgent
