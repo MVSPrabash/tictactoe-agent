@@ -1,5 +1,5 @@
 # Tic-Tac-Toe Agent
-A reinforcement learning agent that learns to plays Tic-Tac-Toe through self-play.
+A reinforcement learning agent that learn to plays Tic-Tac-Toe through self-play.
 
 This project contains 4 core modules
 1. Environment
