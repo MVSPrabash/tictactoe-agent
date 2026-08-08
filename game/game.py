@@ -1,5 +1,6 @@
 from game.player import Player
 from game.board import Board
+from game.state import State
 
 class Game:
     def __init__(self):
@@ -26,3 +27,6 @@ class Game:
 
     def is_over(self) -> bool:
         return self.board.check_win() is not None or self.board.is_full()
+
+    def state(self) -> State:
+        return State(tuple(cell for row in self.board._board for cell in row), self.current_player)
