@@ -13,13 +13,29 @@ class Trainer:
         self.game.reset()
 
         while not self.game.is_over():
-            agent = self.agents[self.game.current_player]
-            state: State = self.game.state()
-            action: Action = agent.choose_action(state)
-            try:
-                self.game.play(action)
-            except ValueError:
-                continue
+            player = self.game.current_player
+            agent = self.agents[player]
+
+            state = self.game.state()
+            actions = self.game.legal_actions()
+
+            action = agent.choose_action(state)
+
+            self.game.play(action)
+
+            next_state = self.game.state()
+            next_actions = self.game.legal_actions()
+            done = self.game.is_over()
+
+            agent.update(
+                state = state,
+                action = action,
+                reward = 0.0,
+                next_state = next_state,
+                next_actions = next_actions,
+                done = done
+            )
+
 
         return self.game.winner()
         
