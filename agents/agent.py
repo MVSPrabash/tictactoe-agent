@@ -5,10 +5,13 @@ from game.state import State
 class Agent(ABC):
     def __init__(
         self,
-        alpha: float,
-        epsilon: float,
-        gamma: float,
-    ):...
+        alpha: float = 0.1,
+        epsilon: float = 0.3,
+        gamma: float = 0.99,
+    ):
+        self.alpha: float = alpha
+        self.epsilon: float = epsilon
+        self.gamma: float = gamma
 
     @abstractmethod
     def choose_action(self, state: State) -> Action:...
