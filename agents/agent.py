@@ -14,7 +14,7 @@ class Agent(ABC):
         self.gamma: float = gamma
 
     @abstractmethod
-    def choose_action(self, state: State) -> Action:...
+    def choose_action(self, state: State, actions: list[Action]) -> Action:...
 
     @abstractmethod
     def update(

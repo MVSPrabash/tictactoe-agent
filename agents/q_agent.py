@@ -5,15 +5,10 @@ import random
 
 class QLearningAgent(Agent):
     def __init__(
-        self,
-        alpha: float,
-        epsilon: float,
-        gamma: float,
+        self
     ):
+        super().__init__()
         self.q_table: dict[State, dict[Action, float]] = {}
-        self.alpha: float = alpha
-        self.epsilon: float = epsilon
-        self.gamma: float = gamma
 
     def choose_action(self, state: State, actions: list[Action]) -> Action:
         if (random.random() < self.epsilon):
@@ -55,6 +50,8 @@ class QLearningAgent(Agent):
         q_values[action] = current_q + self.alpha * (
             target - current_q
         )
+        self.epsilon *= 0.999995
+        self.epsilon = max(self.epsilon, 0.05)
 
     def _max_q_value(
         self,

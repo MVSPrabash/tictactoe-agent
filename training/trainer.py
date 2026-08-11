@@ -4,6 +4,8 @@ from game.game import Game, Player, Action, State
 class Trainer:
     def __init__(self, game: Game, x_agent: Agent, o_agent: Agent):
         self.game: Game = game
+        self.x_agent = x_agent
+        self.o_agent = o_agent
         self.agents = {
             Player.X: x_agent,
             Player.O: o_agent
@@ -13,28 +15,46 @@ class Trainer:
         self.game.reset()
 
         while not self.game.is_over():
-            player = self.game.current_player
-            agent = self.agents[player]
+            x_state = self.game.state()
+            x_action = self.x_agent.choose_action(x_state, self.game.legal_actions())
 
-            state = self.game.state()
-            actions = self.game.legal_actions()
+            self.game.play(x_action)
 
-            action = agent.choose_action(state)
+            if self.game.is_over():
+                reward = 0
+                winner = self.game.winner()
 
-            self.game.play(action)
+                if winner == Player.X:
+                    reward = 1
+                elif winner == Player.O:
+                    reward = -1
 
-            next_state = self.game.state()
-            next_actions = self.game.legal_actions()
-            done = self.game.is_over()
+                self.x_agent.update(
+                    x_state,
+                    x_action,
+                    reward = reward,
+                    next_state=self.game.state(),
+                    next_actions=[],
+                    done=True
+                )
+                continue
 
-            agent.update(
-                state = state,
-                action = action,
-                reward = 0.0,
-                next_state = next_state,
-                next_actions = next_actions,
-                done = done
+            o_state = self.game.state()
+            o_action = self.o_agent.choose_action(o_state, self.game.legal_actions())
+
+            self.game.play(o_action)
+
+            x_next_state = self.game.state()
+
+            self.x_agent.update(
+                x_state,
+                x_action,
+                reward = 0,
+                next_state=x_next_state,
+                next_actions=self.game.legal_actions(),
+                done=self.game.is_over()
             )
+
 
 
         return self.game.winner()

@@ -1,19 +1,20 @@
 from game.game import Game, Player
 from agents.agent import Agent
 from agents.random_agent import RandomAgent
+from agents.q_agent import QLearningAgent
 from training.trainer import Trainer
 
 
 def main() -> None:
     game: Game = Game()
-    x_agent: Agent = RandomAgent()
+    x_agent: Agent = QLearningAgent()
     o_agent: Agent = RandomAgent()
     trainer: Trainer = Trainer(game, x_agent, o_agent)
 
     x_wins: int = 0
     o_wins: int = 0
     draw: int = 0
-    episodes: int = 20000
+    episodes: int = 1000000
 
     for episode in range(episodes):
         winner = trainer.run_episode()

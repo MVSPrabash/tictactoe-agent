@@ -5,10 +5,8 @@ import random
 
 class RandomAgent(Agent):
 
-    def choose_action(self, state: State) -> Action:
-        row = random.randint(0, 2)
-        col = random.randint(0, 2)
-        return Action(row, col)
+    def choose_action(self, state: State, action: list[Action]) -> Action:
+        return random.choice(action)
 
     def update(
         self,
